@@ -1,19 +1,17 @@
 import React from 'react';
-import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import { Routes, Route } from 'react-router-dom';
-
-import NavBarContainer from './nav/navbar_container';
+import NavBar from './nav/navbar';
 import MainPage from './main/main_page';
-import LoginFormContainer from './session/login_form_container';
-import SignupFormContainer from './session/signup_form_container';
+import LoginForm from './session/login_form';
+import SignupForm from './session/signup_form';
 
 const App = () => (
     <div>
-        <NavBarContainer />
+        <NavBar />
         <Routes>
             <Route path="/" element={<MainPage />} />
-            <Route path="/login" element={<LoginFormContainer />} />
-            <Route path="/signup" element={<SignupFormContainer />} />
+            <Route path="/login" element={<LoginForm />} />
+            <Route path="/signup" element={<SignupForm />} />
         </Routes>
     </div>
 );

@@ -1,28 +1,25 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
-// import './navbar.css'
+import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { logout } from '../../actions/session_actions';
 
-class NavBar extends React.Component {
-    constructor(props) {
-        super(props);
-        this.logoutUser = this.logoutUser.bind(this);
-        this.getLinks = this.getLinks.bind(this);
-    }
+function NavBar() {
+    const loggedIn = useSelector((state) => state.session.isAuthenticated);
+    const dispatch = useDispatch();
 
-    logoutUser(e) {
+    const logoutUser = (e) => {
         e.preventDefault();
-        this.props.logout();
-    }
+        dispatch(logout());
+    };
 
-    // Selectively render links dependent on whether the user is logged in
-    getLinks() {
-        if (this.props.loggedIn) {
+    const getLinks = () => {
+        if (loggedIn) {
             return (
                 <div>
                     <Link to={'/tweets'}>All Tweets</Link>
                     <Link to={'/profile'}>Profile</Link>
                     <Link to={'/new_tweet'}>Write a Tweet</Link>
-                    <button onClick={this.logoutUser}>Logout</button>
+                    <button onClick={logoutUser}>Logout</button>
                 </div>
             );
         } else {
@@ -35,14 +32,12 @@ class NavBar extends React.Component {
         }
     }
 
-    render() {
-        return (
-            <div>
-                <h1>SocialPulse</h1>
-                {this.getLinks()}
-            </div>
-        );
-    }
+    return (
+        <div>
+            <h1>SocialPulse</h1>
+            {getLinks()}
+        </div>
+    );
 }
 
 export default NavBar;

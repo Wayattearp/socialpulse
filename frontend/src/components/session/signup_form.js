@@ -14,7 +14,7 @@ function SignupForm() {
     const navigate = useNavigate();
     const location = useLocation();
     const dispatch = useDispatch();
-    const signedIn = useSelector((state) => state.signedIn);
+    const signedIn = useSelector((state) => state.session.isSignedIn);
     const errors = useSelector((state) => state.errors);
 
     useEffect(() => {
